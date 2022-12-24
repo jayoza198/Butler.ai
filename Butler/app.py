@@ -31,7 +31,7 @@ if (selected=="Intellichat"):
     question=st.text_area("Add your question below!!!")
     button=st.button("Answer")
     def response1(ques):
-        openai.api_key = st.secrets["api"]
+        openai.api_key = st.secrets["Api"]
 
         response = openai.Completion.create(
             model="text-davinci-003",
