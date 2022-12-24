@@ -28,7 +28,27 @@ if (selected=="Intellichat"):
     st.write('''
     IntelliChat: This name highlights the intelligence and chat capabilities of ChatGPT3, making it clear that it's a smart and capable AI chatbot.
       ''')
-    st.caption("Add your question below and click on answer!!!")
+    question=st.text_area("Add your question below!!!")
+    button=st.button("Answer")
+    def response1(ques):
+        openai.api_key = st.secrets["api"]
+
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=f"Ask me anything\nQ:{question}\nA: ",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        print(response)
+        return response.choices[0].text
+    if question and button:
+        reply=response1(question)
+        st.write(reply)
+        
+       
     
 
 
